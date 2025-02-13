@@ -50,8 +50,8 @@ ComplementaryFilterROS::ComplementaryFilterROS(
     int queue_size = 5;
 
     // Register publishers:
-    imu_publisher_ = nh_.advertise<sensor_msgs::Imu>(
-        ros::names::resolve("imu") + "/data", queue_size);
+    imu_publisher_ =
+        nh_.advertise<sensor_msgs::Imu>("/imu_data_raw", queue_size);
 
     if (publish_debug_topics_)
     {
