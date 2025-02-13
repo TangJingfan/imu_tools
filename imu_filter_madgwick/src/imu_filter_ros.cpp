@@ -110,8 +110,7 @@ ImuFilterRos::ImuFilterRos(ros::NodeHandle nh, ros::NodeHandle nh_private)
     config_server_->setCallback(f);
 
     // **** register publishers
-    imu_publisher_ = nh_.advertise<sensor_msgs::Imu>(
-        ros::names::resolve("imu") + "/data", 5);
+    imu_publisher_ = nh_.advertise<sensor_msgs::Imu>("/imu_data_raw", 5);
 
     if (publish_debug_topics_)
     {
@@ -128,8 +127,7 @@ ImuFilterRos::ImuFilterRos(ros::NodeHandle nh, ros::NodeHandle nh_private)
     // connection callback.
     int queue_size = 5;
 
-    imu_subscriber_.reset(new ImuSubscriber(
-        nh_, ros::names::resolve("imu") + "/data_raw", queue_size));
+    imu_subscriber_.reset(new ImuSubscriber(nh_, "/imu_data_raw", queue_size));
 
     if (use_mag_)
     {
